@@ -4,5 +4,5 @@ Yerel Satıcı Engelleyen Web Uzantısı
 
 Sürümler ve Açıklamaları
 
-- 1.3 (13 Şubat)
+- 1.3
 İlk public sürüm. Microsoft Edge ve Helium Browser üzerinde test edildi, onaylandı.
