@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a8800;
+            --primary-hover: #086d00;
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+            --text-color: #1a1a1a;
+            --secondary-text: #666666;
+            --border-color: #f0f0f0;
+            --control-bg: #f8fcf8;
+            --control-border: #e2eee2;
+            --switcher-bg: #f0f0f0;
+            --switcher-active: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --secondary-text: #aaaaaa;
+            --border-color: #333333;
+            --control-bg: #1a241a;
+            --control-border: #2d3d2d;
+            --switcher-bg: #2d2d2d;
+            --switcher-active: #404040;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            width: 280px;
+            padding: 0;
+            margin: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .card {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .title-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: 11px;
+            color: var(--secondary-text);
+            margin-top: 2px;
+        }
+
+        .header-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .btn-group {
+            display: flex;
+            background: var(--switcher-bg);
+            padding: 2px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .icon-btn,
+        .lang-btn {
+            border: none;
+            background: none;
+            padding: 4px 8px;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--secondary-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .active {
+            background: var(--switcher-active);
+            color: var(--text-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .control-section {
+            background: var(--control-bg);
+            border: 1px solid var(--control-border);
+            padding: 16px;
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .status-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-label {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .status-desc {
+            font-size: 11px;
+            color: var(--secondary-text);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 26px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--switcher-bg);
+            transition: var(--transition);
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: var(--transition);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input:checked+.slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(22px);
+        }
+
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            display: flex;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .github-link {
+            text-decoration: none;
+            color: var(--secondary-text);
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: var(--switcher-bg);
+        }
+
+        .github-link:hover {
+            color: var(--text-color);
+            background: var(--switcher-active);
+        }
+
+        .github-icon {
+            width: 14px;
+            height: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="title-group">
+                <h1 class="main-title" id="extName">Globalize Temu</h1>
+                <span class="subtitle" id="extSub">Local Product Filter</span>
+            </div>
+            <div class="header-controls">
+                <div class="btn-group" id="langSelector">
+                    <button class="lang-btn active" id="btnTR">TR</button>
+                    <button class="lang-btn" id="btnEN">EN</button>
+                </div>
+                <div class="btn-group" id="themeSelector">
+                    <button class="icon-btn active" id="btnLight" title="Light Mode">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" id="btnDark" title="Dark Mode">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <div class="status-info">
+                <span class="status-label" id="statusLabel">Uzantı Aktif</span>
+                <span class="status-desc" id="statusDesc">Yerel ürünler gizleniyor</span>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="toggleBlocker" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="footer">
+            <a href="https://github.com/Zephyrquill" target="_blank" class="github-link">
+                <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+                <span>Zephyrquill</span>
+            </a>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+
+</html>
