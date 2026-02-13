@@ -1,4 +1,5 @@
 # Globalize-Temu
-Yerel Ürün Filtresi
+Yerel Satıcı Engelleyen Web Uzantısı
 
-Sık sık ayarları değiştirmeyin eklenti üzerinden. HER ŞEY ÇÖKÜYOR.
+
+1.3 
