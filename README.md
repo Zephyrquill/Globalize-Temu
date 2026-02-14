@@ -1,5 +1,12 @@
 # Globalize-Temu
-Yerel Satıcı Engelleyen Web Uzantısı
+Yerel Satıcıların Sattığı Ürünleri Görmenizi Engelleyen Web Uzantısı
+
+
+
+
+
+
+
 
 
 Sürümler ve Açıklamaları
