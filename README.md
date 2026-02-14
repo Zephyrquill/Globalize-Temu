@@ -10,7 +10,7 @@ Ekstra Özellikler
 Sürümler ve özellikleri
 
 -1.3-
-İlk public sürüm.
+İlk public, yalın sürüm.
 
 -1.4-
 Engellenen yerel satıcı ürün sayısı özelliği eklendi.
